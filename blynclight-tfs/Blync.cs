@@ -2,7 +2,8 @@
 
 namespace blynclight_tfs
 {
-    public class Explorer
+    // wrapper for controller from sdk/assembly
+    public class Blync
     {
         public static int getConnectedBlyncDevices()
         {

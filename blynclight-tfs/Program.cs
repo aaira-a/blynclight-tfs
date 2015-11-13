@@ -10,7 +10,7 @@ namespace blynclight_tfs
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\nNumber of Connected Blync Device(s): " + Explorer.getConnectedBlyncDevices());
+            Console.WriteLine("\nNumber of Connected Blync Device(s): " + Blync.getConnectedBlyncDevices());
         }
     }
 }
