@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using NSubstitute;
 
 using Blynclight;
 using blynclight_tfs;
@@ -12,11 +11,23 @@ namespace blynclight_tfs_Tests
         [Test]
         public void getConnectedBlyncDevices_calls_InitBlyncDevices()
         {
-            BlynclightController mockController = Substitute.For<BlynclightController>();
+            var controller = new FakeController();
+            var oBlync = new Blync(controller);
 
-            Blync.getConnectedBlyncDevices();
+            oBlync.getConnectedBlyncDevices();
 
-            mockController.Received().InitBlyncDevices();
+            Assert.IsTrue(controller.isInitBlyncDevicesCalled);
         }
+    }
+
+    public class FakeController: IBlynclightController
+    {
+        public bool isInitBlyncDevicesCalled = false;
+
+        public int InitBlyncDevices()
+        {
+            this.isInitBlyncDevicesCalled = true;
+            return 1;
+        } 
     }
 }
