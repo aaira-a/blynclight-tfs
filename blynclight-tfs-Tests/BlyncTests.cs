@@ -18,16 +18,35 @@ namespace blynclight_tfs_Tests
 
             Assert.IsTrue(controller.isInitBlyncDevicesCalled);
         }
+
+        [Test]
+        public void TurnOnMagentaLight_calls_dlls_TurnOnMagentaLight()
+        {
+            var controller = new FakeController();
+            var oBlync = new Blync(controller);
+
+            oBlync.TurnOnMagentaLight(0);
+
+            Assert.IsTrue(controller.isTurnOnMagentaLightCalled);
+        }
+
     }
 
     public class FakeController: IBlynclightController
     {
         public bool isInitBlyncDevicesCalled = false;
+        public bool isTurnOnMagentaLightCalled = false;
 
         public int InitBlyncDevices()
         {
             this.isInitBlyncDevicesCalled = true;
             return 1;
+        }
+
+        public void TurnOnMagentaLight(int deviceIndex)
+        {
+            this.isTurnOnMagentaLightCalled = true;
         } 
+
     }
 }

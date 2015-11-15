@@ -5,16 +5,16 @@ using Microsoft.TeamFoundation.Framework.Common;
 using Microsoft.TeamFoundation.Framework.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
 
-namespace TfsApplication
+namespace blynclight_tfs
 {
-    class Program
+    class TfsApplication
     {
-        static void Main(String[] args)
+        public static int query(string uri)
         {
             // Connect to the work item store
             TfsTeamProjectCollection tpc =
                 new TfsTeamProjectCollection(
-                    new Uri(args[0]));
+                    new Uri(uri));
                 
             WorkItemStore workItemStore = (WorkItemStore)tpc.GetService(typeof(WorkItemStore));
 
@@ -27,13 +27,7 @@ namespace TfsApplication
                "AND [Area Path] = 'Nintex\\NW for O365' " +
                "Order By [ID] Asc");
 
-            Console.WriteLine(queryResults.Count);
+            return queryResults.Count;
         }
-    }
-}
-namespace blynclight_tfs
-{
-    class TFS
-    {
     }
 }

@@ -8,12 +8,24 @@ namespace blynclight_tfs
 {
     class Program
     {
-        /*
+        
         static void Main(string[] args)
         {
             var oBlync = new Blync();
-            Console.WriteLine("\nNumber of Connected Blync Device(s): " + oBlync.getConnectedBlyncDevices());
+            var numberOfDevices = oBlync.getConnectedBlyncDevices();
+            Console.WriteLine("\nNumber of Connected Blync Device(s): " + numberOfDevices);
+
+            if (numberOfDevices > 0)
+            {
+                var result = TfsApplication.query(args[0]);
+
+                if (result > 0)
+                {
+                    oBlync.TurnOnMagentaLight(0);
+                }
+
+            }
         }
-        */
+        
     }
 }

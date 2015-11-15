@@ -6,6 +6,7 @@ namespace blynclight_tfs
     public interface IBlynclightController
     {
         int InitBlyncDevices();
+        void TurnOnMagentaLight(int deviceIndex);
     }
 
     // wrapper for controller from sdk/assembly
@@ -36,7 +37,18 @@ namespace blynclight_tfs
             {
                 return this.controller.InitBlyncDevices();
             }
-            
+        }
+
+        public void TurnOnMagentaLight(int deviceIndex)
+        {
+            if (this.isControllerInjected)
+            {
+                this.injected.TurnOnMagentaLight(deviceIndex);
+            }
+            else
+            {
+                this.controller.TurnOnMagentaLight(deviceIndex);
+            }
         }
     }
 }
