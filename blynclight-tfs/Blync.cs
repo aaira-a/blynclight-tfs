@@ -7,6 +7,7 @@ namespace blynclight_tfs
     {
         int InitBlyncDevices();
         void TurnOnMagentaLight(int deviceIndex);
+        void ResetLight(int deviceIndex);
     }
 
     // wrapper for controller from sdk/assembly
@@ -50,5 +51,18 @@ namespace blynclight_tfs
                 this.controller.TurnOnMagentaLight(deviceIndex);
             }
         }
+
+        public void ResetLight(int deviceIndex)
+        {
+            if (this.isControllerInjected)
+            {
+                this.injected.ResetLight(deviceIndex);
+            }
+            else
+            {
+                this.controller.ResetLight(deviceIndex);
+            }
+        }
+
     }
 }

@@ -24,6 +24,11 @@ namespace blynclight_tfs
                     oBlync.TurnOnMagentaLight(0);
                 }
 
+                if (result == 0)
+                {
+                    oBlync.ResetLight(0);
+                }
+
             }
         }
         
