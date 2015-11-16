@@ -20,6 +20,7 @@ namespace blynclight_tfs
                 if (numberOfDevices > 0)
                 {
                     var result = TfsApplication.query(args[0]);
+                    Console.WriteLine("Last query: " + DateTime.Now.ToString("HH:mm:ss tt"));
 
                     if (result > 0)
                     {
