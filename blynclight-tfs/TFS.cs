@@ -9,7 +9,7 @@ namespace blynclight_tfs
 {
     class TfsApplication
     {
-        public static int query(string uri)
+        public static WorkItemCollection query(string uri)
         {
             // Connect to the work item store
             TfsTeamProjectCollection tpc =
@@ -27,7 +27,7 @@ namespace blynclight_tfs
                "AND [Area Path] = 'Nintex\\NW for O365' " +
                "Order By [ID] Asc");
 
-            return queryResults.Count;
+            return queryResults;
         }
     }
 }
