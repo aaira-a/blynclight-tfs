@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NSubstitute;
 
 using Blynclight;
 using blynclight_tfs;
@@ -11,59 +12,49 @@ namespace blynclight_tfs_Tests
         [Test]
         public void getConnectedBlyncDevices_calls_InitBlyncDevices()
         {
-            var controller = new FakeController();
-            var oBlync = new Blync(controller);
+            var mockController = Substitute.For<BlynclightController>();
+            var oBlync = new Blync(mockController);
 
-            oBlync.getConnectedBlyncDevices();
+            //oBlync.getConnectedBlyncDevices();
 
-            Assert.IsTrue(controller.isInitBlyncDevicesCalled);
+            mockController.DidNotReceive().InitBlyncDevices();
         }
 
         [Test]
         public void TurnOnMagentaLight_calls_dlls_TurnOnMagentaLight()
         {
-            var controller = new FakeController();
-            var oBlync = new Blync(controller);
+            var mockController = Substitute.For<BlynclightController>();
+            var oBlync = new Blync(mockController);
 
-            oBlync.TurnOnMagentaLight(0);
+            //oBlync.TurnOnMagentaLight(0);
 
-            Assert.IsTrue(controller.isTurnOnMagentaLightCalled);
+            mockController.Received().TurnOnBlueLight(0);
         }
 
         [Test]
         public void ResetLight_calls_dlls_ResetLight()
         {
-            var controller = new FakeController();
-            var oBlync = new Blync(controller);
+            var mockController = Substitute.For<BlynclightController>();
+            var oBlync = new Blync(mockController);
 
-            oBlync.ResetLight(0);
+            //oBlync.ResetLight(0);
 
-            Assert.IsTrue(controller.isResetLightCalled);
+            mockController.Received().ResetLight(0);
         }
-
     }
 
-    public class FakeController: IBlynclightController
+    [TestFixture]
+    public class AlternateBlyncTests
     {
-        public bool isInitBlyncDevicesCalled = false;
-        public bool isTurnOnMagentaLightCalled = false;
-        public bool isResetLightCalled = false;
-
-        public int InitBlyncDevices()
+        [Test]
+        public void Alternate_calls_concrete_ResetLight()
         {
-            this.isInitBlyncDevicesCalled = true;
-            return 1;
+            var mockController = Substitute.For<IBlynclightController>();
+            var oBlync = new AlternateBlync(mockController);
+
+            //oBlync.ResetLight(0);
+
+            mockController.Received().ResetLight(0);
         }
-
-        public void TurnOnMagentaLight(int deviceIndex)
-        {
-            this.isTurnOnMagentaLightCalled = true;
-        }
-
-        public void ResetLight(int deviceIndex)
-        {
-            this.isResetLightCalled = true;
-        } 
-
     }
 }
