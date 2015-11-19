@@ -24,7 +24,7 @@ namespace blynclight_tfs
                 {
                     var queryResults = TfsApplication.query(args[0], args[1]);
                     Console.WriteLine("Last query: " + DateTime.Now.ToString("HH:mm:ss tt"));
-                    TfsApplication.print(queryResults);
+                    TfsApplication.print(queryResults, args[0], args[1]);
 
                     if (queryResults.Count > 0)
                     {                        

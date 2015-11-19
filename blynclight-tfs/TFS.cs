@@ -28,13 +28,20 @@ namespace blynclight_tfs
             return queryResults;
         }
         
-        public static void print(WorkItemCollection queryResults)
+        public static void print(WorkItemCollection queryResults, string tfsUri, string tfsCollection)
         {
             Console.WriteLine("Number of matching query result(s): " + queryResults.Count);
             foreach (WorkItem item in queryResults)
             {
-                Console.WriteLine(item.Uri);
+                var id = item.Id.ToString();
+                var Uri = constructUri(tfsUri, tfsCollection, id);
+                Console.WriteLine(Uri);
             }
+        }
+
+        public static string constructUri(string tfsUri, string tfsCollection, string Id)
+        {
+            return (tfsUri + "/" + tfsCollection + "/_workitems/edit/" + Id);
         }
     }
 }
