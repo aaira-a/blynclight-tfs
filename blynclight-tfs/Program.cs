@@ -24,21 +24,16 @@ namespace blynclight_tfs
                 {
                     var queryResults = TfsApplication.query(args[0], args[1]);
                     Console.WriteLine("Last query: " + DateTime.Now.ToString("HH:mm:ss tt"));
+                    TfsApplication.print(queryResults);
 
                     if (queryResults.Count > 0)
-                    {
-                        Console.WriteLine("Number of matching query result(s): " + queryResults.Count);
-                        foreach(WorkItem item in queryResults)
-                        {
-                            Console.WriteLine(item.Uri);
-                        }
+                    {                        
                         Console.WriteLine("Turning on light");
                         oBlync.TurnOnMagentaLight(0);
                     }
 
                     if (queryResults.Count == 0)
                     {
-                        Console.WriteLine("Number of matching query result(s): " + queryResults.Count);
                         Console.WriteLine("Turning off light");
                         oBlync.ResetLight(0);
                     }

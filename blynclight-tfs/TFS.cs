@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Microsoft.TeamFoundation.Client;
-using Microsoft.TeamFoundation.Framework.Common;
-using Microsoft.TeamFoundation.Framework.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
 
 namespace blynclight_tfs
@@ -28,6 +26,15 @@ namespace blynclight_tfs
                "Order By [ID] Asc");
 
             return queryResults;
+        }
+        
+        public static void print(WorkItemCollection queryResults)
+        {
+            Console.WriteLine("Number of matching query result(s): " + queryResults.Count);
+            foreach (WorkItem item in queryResults)
+            {
+                Console.WriteLine(item.Uri);
+            }
         }
     }
 }
