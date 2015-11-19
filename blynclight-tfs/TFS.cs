@@ -9,12 +9,12 @@ namespace blynclight_tfs
 {
     class TfsApplication
     {
-        public static WorkItemCollection query(string uri)
+        public static WorkItemCollection query(string tfsUri, string tfsCollection)
         {
             // Connect to the work item store
             TfsTeamProjectCollection tpc =
                 new TfsTeamProjectCollection(
-                    new Uri(uri));
+                    new Uri(tfsUri + "/" + tfsCollection));
                 
             WorkItemStore workItemStore = (WorkItemStore)tpc.GetService(typeof(WorkItemStore));
 
