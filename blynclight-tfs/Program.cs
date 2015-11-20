@@ -11,11 +11,11 @@ namespace blynclight_tfs
     {
         static void Main(string[] args)
         {
-            var oBlync = new Blync();
+            var oBlync = ActualControllerFactory.Create();
 
             while (true)
             {
-                var numberOfDevices = oBlync.getConnectedBlyncDevices();
+                var numberOfDevices = oBlync.InitBlyncDevices();
                 Console.WriteLine("\nNumber of Connected Blync Device(s): " + numberOfDevices);
 
                 if (numberOfDevices > 0)
@@ -26,7 +26,7 @@ namespace blynclight_tfs
                     if (queryResults.Count > 0)
                     {
                         Console.WriteLine("Number of matching query result(s): " + queryResults.Count);
-                        foreach(WorkItem item in queryResults)
+                        foreach (WorkItem item in queryResults)
                         {
                             Console.WriteLine(item.Uri);
                         }

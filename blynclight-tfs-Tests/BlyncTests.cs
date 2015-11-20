@@ -7,52 +7,37 @@ using blynclight_tfs;
 namespace blynclight_tfs_Tests
 {
     [TestFixture]
-    public class BlyncTests
+    public class BlyncUserTests
     {
         [Test]
         public void getConnectedBlyncDevices_calls_InitBlyncDevices()
         {
-            var mockController = Substitute.For<BlynclightController>();
-            var oBlync = new Blync(mockController);
+            var mockController = Substitute.For<IBlynclightController>();
+            var oBlync = new BlyncUser(mockController);
 
-            //oBlync.getConnectedBlyncDevices();
+            oBlync.getConnectedBlyncDevices();
 
-            mockController.DidNotReceive().InitBlyncDevices();
+            mockController.Received().InitBlyncDevices();
         }
 
         [Test]
         public void TurnOnMagentaLight_calls_dlls_TurnOnMagentaLight()
         {
-            var mockController = Substitute.For<BlynclightController>();
-            var oBlync = new Blync(mockController);
+            var mockController = Substitute.For<IBlynclightController>();
+            var oBlync = new BlyncUser(mockController);
 
-            //oBlync.TurnOnMagentaLight(0);
+            oBlync.TurnOnMagentaLight(0);
 
-            mockController.Received().TurnOnBlueLight(0);
+            mockController.Received().TurnOnMagentaLight(0);
         }
 
         [Test]
-        public void ResetLight_calls_dlls_ResetLight()
-        {
-            var mockController = Substitute.For<BlynclightController>();
-            var oBlync = new Blync(mockController);
-
-            //oBlync.ResetLight(0);
-
-            mockController.Received().ResetLight(0);
-        }
-    }
-
-    [TestFixture]
-    public class AlternateBlyncTests
-    {
-        [Test]
-        public void Alternate_calls_concrete_ResetLight()
+        public void BlyncUser_calls_Actual_ResetLight()
         {
             var mockController = Substitute.For<IBlynclightController>();
-            var oBlync = new AlternateBlync(mockController);
+            var oBlync = new BlyncUser(mockController);
 
-            //oBlync.ResetLight(0);
+            oBlync.ResetLight(0);
 
             mockController.Received().ResetLight(0);
         }
