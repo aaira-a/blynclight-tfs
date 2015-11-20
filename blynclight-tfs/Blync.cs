@@ -6,63 +6,46 @@ namespace blynclight_tfs
     public interface IBlynclightController
     {
         int InitBlyncDevices();
-        void TurnOnMagentaLight(int deviceIndex);
-        void ResetLight(int deviceIndex);
+        bool TurnOnMagentaLight(int deviceIndex);
+        bool ResetLight(int deviceIndex);
     }
 
-    // wrapper for controller from sdk/assembly
-    public class Blync
+    public class BlyncUser
     {
-        BlynclightController controller;
-        IBlynclightController injected;
-        bool isControllerInjected = false;
-        
-        public Blync()
-        {
-            this.controller = new BlynclightController();
-        }
+        IBlynclightController controller;
 
-        public Blync(IBlynclightController injected)
+        public BlyncUser()
         {
-            this.injected = injected;
-            this.isControllerInjected = true;
+            this.controller = (IBlynclightController) ActualControllerFactory.Create();
+        }
+        
+        public BlyncUser(IBlynclightController injected_controller)
+        {
+            this.controller = injected_controller;
         }
 
         public int getConnectedBlyncDevices()
         {
-            if (this.isControllerInjected)
-            {
-                return this.injected.InitBlyncDevices();
-            }
-            else
-            {
-                return this.controller.InitBlyncDevices();
-            }
+            return controller.InitBlyncDevices();
         }
 
         public void TurnOnMagentaLight(int deviceIndex)
         {
-            if (this.isControllerInjected)
-            {
-                this.injected.TurnOnMagentaLight(deviceIndex);
-            }
-            else
-            {
-                this.controller.TurnOnMagentaLight(deviceIndex);
-            }
+            this.controller.TurnOnMagentaLight(deviceIndex);
         }
 
         public void ResetLight(int deviceIndex)
         {
-            if (this.isControllerInjected)
-            {
-                this.injected.ResetLight(deviceIndex);
-            }
-            else
-            {
-                this.controller.ResetLight(deviceIndex);
-            }
+            this.controller.ResetLight(deviceIndex);
         }
 
+    }
+
+    public class ActualControllerFactory
+    {
+        public static BlynclightController Create()
+        {
+            return new BlynclightController();
+        }
     }
 }
