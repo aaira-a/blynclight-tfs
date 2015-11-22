@@ -2,24 +2,16 @@
 
 namespace blynclight_tfs
 {
-
-    public interface IBlynclightController
-    {
-        int InitBlyncDevices();
-        bool TurnOnMagentaLight(int deviceIndex);
-        bool ResetLight(int deviceIndex);
-    }
-
     public class BlyncUser
     {
-        IBlynclightController controller;
+        BlynclightController controller;
 
         public BlyncUser()
         {
-            this.controller = (IBlynclightController) ActualControllerFactory.Create();
+            this.controller = ActualControllerFactory.Create();
         }
         
-        public BlyncUser(IBlynclightController injected_controller)
+        public BlyncUser(BlynclightController injected_controller)
         {
             this.controller = injected_controller;
         }

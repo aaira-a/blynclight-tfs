@@ -13,11 +13,11 @@ namespace blynclight_tfs
 
         static void Execute(string[] args)
         {
-            var oBlync = ActualControllerFactory.Create();
+            var oBlync = new BlyncUser();
 
             while (true)
             {
-                var numberOfDevices = oBlync.InitBlyncDevices();
+                var numberOfDevices = oBlync.getConnectedBlyncDevices();
                 Console.WriteLine("\nNumber of Connected Blync Device(s): " + numberOfDevices);
 
                 if (numberOfDevices > 0)
