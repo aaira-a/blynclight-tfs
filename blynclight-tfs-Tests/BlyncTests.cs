@@ -1,13 +1,12 @@
 ﻿using Microsoft.QualityTools.Testing.Fakes;
 using NUnit.Framework;
 
-using Blynclight;
 using blynclight_tfs;
 
 namespace blynclight_tfs_Tests
 {
     [TestFixture]
-    public class BlyncUserTests
+    public class BlyncWrapperTests
     {
         [Test]
         public void getConnectedBlyncDevices_calls_dlls_InitBlyncDevices()
@@ -23,7 +22,7 @@ namespace blynclight_tfs_Tests
                     return 1;
                 };
 
-                var oBlync = new BlyncUser(fakeController);
+                var oBlync = new BlyncWrapper(fakeController);
                 var result = oBlync.getConnectedBlyncDevices();
 
                 Assert.AreEqual(1, result);
@@ -46,7 +45,7 @@ namespace blynclight_tfs_Tests
                     return true;
                 };
 
-                var oBlync = new BlyncUser(fakeController);
+                var oBlync = new BlyncWrapper(fakeController);
                 oBlync.TurnOnMagentaLight(3);
 
                 Assert.IsTrue(called);
@@ -67,7 +66,7 @@ namespace blynclight_tfs_Tests
                     return true;
                 };
 
-                var oBlync = new BlyncUser(fakeController);
+                var oBlync = new BlyncWrapper(fakeController);
                 oBlync.ResetLight(5);
 
                 Assert.IsTrue(called);

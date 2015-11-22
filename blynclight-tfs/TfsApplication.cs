@@ -7,7 +7,7 @@ namespace blynclight_tfs
 {
     class TfsApplication
     {
-        public static WorkItemCollection query(string tfsUri, string tfsCollection)
+        public static WorkItemCollection Query(string tfsUri, string tfsCollection)
         {
             // Connect to the work item store
             TfsTeamProjectCollection tpc =
@@ -28,7 +28,7 @@ namespace blynclight_tfs
             return queryResults;
         }
         
-        public static void print(WorkItemCollection queryResults, string tfsUri, string tfsCollection)
+        public static void Print(WorkItemCollection queryResults, string tfsUri, string tfsCollection)
         {
             Console.WriteLine("Number of matching query result(s): " + queryResults.Count);
             foreach (WorkItem item in queryResults)

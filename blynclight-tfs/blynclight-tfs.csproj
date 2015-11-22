@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blync.cs" />
+    <Compile Include="BlyncWrapper.cs" />
     <Compile Include="NUnitSmoke.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TFS.cs" />
+    <Compile Include="TfsApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

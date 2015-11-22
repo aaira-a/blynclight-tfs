@@ -13,7 +13,7 @@ namespace blynclight_tfs
 
         static void Execute(string[] args)
         {
-            var oBlync = new BlyncUser();
+            var oBlync = new BlyncWrapper();
 
             while (true)
             {
@@ -22,9 +22,9 @@ namespace blynclight_tfs
 
                 if (numberOfDevices > 0)
                 {
-                    var queryResults = TfsApplication.query(args[0], args[1]);
+                    var queryResults = TfsApplication.Query(args[0], args[1]);
                     Console.WriteLine("Last query: " + DateTime.Now.ToString("HH:mm:ss tt"));
-                    TfsApplication.print(queryResults, args[0], args[1]);
+                    TfsApplication.Print(queryResults, args[0], args[1]);
 
                     if (queryResults.Count > 0)
                     {                        

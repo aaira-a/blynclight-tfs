@@ -2,16 +2,16 @@
 
 namespace blynclight_tfs
 {
-    public class BlyncUser
+    public class BlyncWrapper
     {
         BlynclightController controller;
 
-        public BlyncUser()
+        public BlyncWrapper()
         {
             this.controller = ActualControllerFactory.Create();
         }
         
-        public BlyncUser(BlynclightController injected_controller)
+        public BlyncWrapper(BlynclightController injected_controller)
         {
             this.controller = injected_controller;
         }
